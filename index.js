@@ -53,5 +53,47 @@ console.log(differenceByVal);
 const differenceWith = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
 
 const differenceWithVal = _.differenceWith(differenceWith, [{ 'x': 1, 'y': 2 }], _.isEqual);
-console.log('_.differenceWithVal');
+console.log('_.differenceWith');
 console.log(differenceWithVal);
+
+//_.drop(array, [n=1])
+//인자로 전달한 값을 기준으로 앞부터 자른 배열을 반환.
+const drop = [1, 2, 3, 4, 5];
+
+const dropVal = _.drop(drop, 2);
+console.log('_.drop');
+console.log(dropVal);
+
+//_.dropRight(array, [n=1])
+//인자로 전달한 값을 기준으로 뒤부터 자른 배열을 반환.
+const dropRight = [1, 2, 3, 4, 5];
+
+const dropRightVal = _.dropRight(dropRight, 2);
+console.log('_.dropRight');
+console.log(dropRightVal);
+
+//_.dropRightWhile(array, [predicate=_.identity])
+//drop에서 인자로 전달할 길이 대신 판정 함수를 받는다. 뒤부터 시작해서 false를 만나는 순간 멈추고 반환.
+const dropRightWhile = [
+  { 'user': 'barney',  'active': true },
+  { 'user': 'fred',    'active': false },
+  { 'user': 'jiwoong', 'active': true },
+  { 'user': 'pebbles', 'active': false },
+];
+
+const dropRightWhileVal = _.dropRightWhile(dropRightWhile, o => !o.active);
+console.log('_.dropRightWhile');
+console.log(dropRightWhileVal);
+
+//_.dropWhile(array, [predicate=_.identity])
+//drop에서 인자로 전달할 길이 대신 판정 함수를 받는다. 앞부터 시작해서 false를 만나는 순간 멈추고 반환.
+const dropWhile = [
+  { 'user': 'barney',  'active': true },
+  { 'user': 'fred',    'active': false },
+  { 'user': 'jiwoong', 'active': true },
+  { 'user': 'pebbles', 'active': false },
+];
+
+const dropWhileVal = _.dropWhile(dropWhile, o => o.active);
+console.log('_.dropWhile');
+console.log(dropWhileVal);
