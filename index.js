@@ -97,3 +97,31 @@ const dropWhile = [
 const dropWhileVal = _.dropWhile(dropWhile, o => o.active);
 console.log('_.dropWhile');
 console.log(dropWhileVal);
+
+//_.fill(array, value, [start=0], [end=array.length])
+//첫번째 인자의 배열을 두번째 인자의 값으로 채운뒤 반환. 원본 배열에 영향을 준다. 특이사항으로는 시작인덱스와 종료인덱스 지정이 가능하다는점이다.
+//참고: Array.prototype.fill 함수와 비교하기
+const fill = [1, 2, 3];
+
+const fillVal = _.fill(fill, 'a');
+console.log('_.fill');
+console.log(fill);
+//시작은 인덱스(0부터)지만 끝부분은 length개념으로 받는다.(왜?)
+console.log(_.fill([1, 2, 3, 4, 5, 6], '*', 2, 5));
+
+//_.findIndex(array, [predicate=_.identity], [fromIndex=0])
+//
+const findIndex = [
+  { 'user': 'barney',  'active': false },
+  { 'user': 'fred',    'active': false },
+  { 'user': 'pebbles', 'active': true }
+];;
+
+const findIndexVal = _.findIndex(findIndex, o => o.user === 'barney');
+console.log('_.findIndex');
+console.log(findIndexVal);
+
+//native와 비교.
+const nativeFindIndexVal = Array.prototype.findIndex(o => this.user === 'barney', findIndex);
+console.log('Array.prototype.findIndex');
+console.log(nativeFindIndexVal);
