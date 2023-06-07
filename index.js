@@ -110,7 +110,7 @@ console.log(fill);
 console.log(_.fill([1, 2, 3, 4, 5, 6], '*', 2, 5));
 
 //_.findIndex(array, [predicate=_.identity], [fromIndex=0])
-//
+//배열에서 찾고자 하는 특정한 값의 인덱스를 반환한다. 찾고자 하는값이 없다면 -1을 반환한다.
 const findIndex = [
   { 'user': 'barney',  'active': false },
   { 'user': 'fred',    'active': false },
@@ -122,6 +122,46 @@ console.log('_.findIndex');
 console.log(findIndexVal);
 
 //native와 비교.
-const nativeFindIndexVal = Array.prototype.findIndex(o => this.user === 'barney', findIndex);
+const nativeFindIndexVal = findIndex.findIndex(o => o.user === 'barney');
 console.log('Array.prototype.findIndex');
 console.log(nativeFindIndexVal);
+
+//기본적인 동작은 같은거 같으나 조금 더 편리성이 부여된다. 아래와 같이 lodash에선 함수말고도 다양한 방식으로 가능하다.
+_.findIndex(function(o) { return o.user == 'barney'; });
+// => 0
+ 
+// The `_.matches` iteratee shorthand.
+_.findIndex({ 'user': 'fred', 'active': false });
+// => 1
+ 
+// The `_.matchesProperty` iteratee shorthand.
+_.findIndex(['active', false]);
+// => 0
+ 
+// The `_.property` iteratee shorthand.
+_.findIndex('active');
+// => 2
+
+//_.findLastIndex(array, [predicate=_.identity], [fromIndex=array.length-1])
+//배열에서 찾고자 하는 특정한 값의 인덱스를 반환한다. 찾고자 하는값이 없다면 -1을 반환한다.
+//findIndex와 다른점은 역순으로 순회를 한다는점인데, 일치하는값이 두가지 이상일경우 findIndex와 findLastIndex의 값은 달라질수있다.
+const findLastIndex = [
+  { 'user': 'barney',  'active': false },
+  { 'user': 'fred',    'active': false },
+  { 'user': 'pebbles', 'active': true }
+];;
+
+const findLastIndexVal = _.findLastIndex(findLastIndex, o => o.user === 'barney');
+console.log('_.findLastIndex');
+console.log(findLastIndexVal);
+
+console.log('findIndex와 findLastIndex비교');
+console.log(_.findIndex([1, 1], v => v === 1));
+console.log(_.findLastIndex([1, 1], v => v === 1));
+
+//_.head(array)
+//배열이 가진 첫번째 요소를 반환.
+const headVal = _.head([1, 2, 3]);
+
+console.log('_.head');
+console.log(headVal);
